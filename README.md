@@ -4,7 +4,51 @@ This repository contains my solutions and experiments for various Kaggle competi
 
 ## 🏆 Competitions
 
-### 1. Fake-Or-Real: The Imposter Hunt
+### 1. Hull Tactical Market Prediction
+**Competition Type**: Financial Time Series, Market Prediction  
+**Task**: Predict optimal S&P 500 allocation to outperform market while managing volatility  
+**Current Best Score**: 0.7743 Competition Sharpe Ratio  
+**Status**: ✅ Complete with comprehensive model analysis
+
+#### Key Achievements
+- 🎯 **EMH Challenge**: Successfully challenged Efficient Market Hypothesis with systematic alpha generation
+- 📊 **Comprehensive Testing**: Evaluated 8 different model architectures with time series validation
+- 🏆 **Surprising Winner**: Linear Regression outperformed complex ensemble methods
+- ⚡ **Feature Engineering**: Expanded 74 base features to 284 engineered features
+- 📈 **Risk Management**: Maintained allocations within competition constraints
+
+#### Models Tested & Results
+| Model | Competition Sharpe | Total Return | Volatility | Status |
+|-------|-------------------|--------------|------------|---------|
+| **Linear Regression** | 0.7743 | 15.49% | 24.17% | 🥇 **Winner** |
+| **Ridge Regression** | 0.7740 | 15.47% | 24.17% | 🥈 Very Close |
+| **Gradient Boosting** | 0.7700 | 15.23% | 24.18% | ✅ Strong |
+| **SVR** | 0.7695 | 15.25% | 24.22% | ✅ Good |
+| **Random Forest** | 0.7692 | 15.18% | 24.19% | ✅ Good |
+| **Neural Network** | 0.6662 | 12.21% | 27.26% | ❌ Overfitted |
+
+#### Technical Highlights
+- **Advanced Feature Engineering**: Lag features, rolling statistics, momentum indicators, interaction terms
+- **Time Series Validation**: Proper temporal cross-validation to prevent look-ahead bias
+- **Competition Metrics**: Optimized for modified Sharpe ratio with volatility penalties
+- **Risk Management**: Allocation bounds (0-2) with volatility targeting
+- **Complete Documentation**: Detailed methodology in [`process.md`](./Tactical-Market-Prediction/process.md)
+
+#### Key Insights
+- **Simple Models Win**: Linear regression outperformed complex ensemble methods
+- **Feature Quality > Model Complexity**: 284 engineered features more valuable than algorithm sophistication
+- **Conservative Strategies**: Market-neutral allocations (~1.0) performed best
+- **Volatility Control**: Key to competition success vs raw returns
+
+#### Quick Start
+```bash
+cd Tactical-Market-Prediction/
+jupyter notebook hull_tactical_market_prediction.ipynb
+```
+
+---
+
+### 2. Fake-Or-Real: The Imposter Hunt
 **Competition Type**: NLP, Text Classification  
 **Task**: Identify which of two text files contains real news content  
 **Current Best Score**: 89.47% validation accuracy  
@@ -50,9 +94,10 @@ jupyter notebook fake_real_detection_bert.ipynb
 
 ### Core Technologies
 - **Deep Learning**: PyTorch, Transformers (HuggingFace)
-- **Models**: BERT, RoBERTa, DistilBERT, ALBERT, DeBERTa, ELECTRA
+- **Financial ML**: Time Series Analysis, Feature Engineering, Risk Management
+- **Models**: BERT, RoBERTa, DistilBERT, ALBERT, DeBERTa, ELECTRA, Linear/Tree-based Regressors
 - **Acceleration**: MPS (Metal Performance Shaders) for M1 Mac
-- **Data Science**: pandas, numpy, scikit-learn
+- **Data Science**: pandas, numpy, scikit-learn, scipy
 - **Visualization**: matplotlib, seaborn
 - **Development**: Jupyter Notebooks, VS Code
 
@@ -62,13 +107,20 @@ jupyter notebook fake_real_detection_bert.ipynb
 - 🔄 **Reproducible Results**: Detailed documentation and code organization
 - ⚡ **Efficient Pipelines**: Optimized data loading and model training
 - 🎯 **Multiple Approaches**: Various model architectures and strategies
+- 💹 **Financial Focus**: Time series validation, risk-adjusted metrics, volatility management
 
 ## 📂 Repository Structure
 
 ```
 Kaggle_Competitions/
 ├── README.md                              # This file
-├── Fake-Or-Real-The-Imposter-Hunt/       # Competition 1
+├── Tactical-Market-Prediction/           # Financial Time Series Competition
+│   ├── hull_tactical_market_prediction.ipynb  # Main analysis notebook
+│   ├── process.md                        # Complete methodology documentation
+│   ├── Overview.md                       # Competition requirements
+│   ├── code.md                          # Technical specifications
+│   └── hull-tactical-market-prediction/  # Competition evaluation framework
+├── Fake-Or-Real-The-Imposter-Hunt/       # NLP Competition
 │   ├── data/                             # Competition data
 │   ├── results/                          # Model checkpoints
 │   ├── logs/                             # Training logs
@@ -98,14 +150,17 @@ Kaggle_Competitions/
 ## 📈 Results Summary
 
 ### Competition Performance
+- **Hull Tactical Market Prediction**: 0.7743 Competition Sharpe Ratio achieved
 - **Fake-Or-Real Competition**: 89.47% validation accuracy achieved
-- **Model Diversity**: Successfully tested 6 different architectures
+- **Model Diversity**: Successfully tested 14+ different architectures across competitions
 - **Framework Efficiency**: Reduced experiment time by 60% with systematic approach
 
 ### Technical Achievements
+- **Financial ML**: Challenged EMH with systematic alpha generation and risk management
 - **M1 Mac Integration**: Native GPU acceleration implementation
-- **Universal Framework**: Reusable testing pipeline for any transformer model
+- **Universal Framework**: Reusable testing pipeline for transformers and financial models
 - **Comprehensive Evaluation**: Cross-validation, efficiency metrics, ensemble methods
+- **Feature Engineering**: Advanced time series feature creation (284 from 74 base features)
 
 ## 🚀 Getting Started
 
@@ -116,7 +171,10 @@ python >= 3.8
 torch >= 1.12.0 (with MPS support)
 transformers >= 4.20.0
 pandas, numpy, scikit-learn
+scipy (for optimization and financial calculations)
+matplotlib, seaborn (for visualization)
 jupyter notebook
+# Optional: xgboost, lightgbm (may require OpenMP on macOS)
 ```
 
 ### Quick Setup
